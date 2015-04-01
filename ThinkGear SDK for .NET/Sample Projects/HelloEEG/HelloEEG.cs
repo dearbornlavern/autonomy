@@ -11,6 +11,7 @@ using NeuroSky.ThinkGear.Algorithms;
 
 
 namespace testprogram {
+    //this is a comment
     class Program {
         static Connector connector;
         static byte poorSig;        
