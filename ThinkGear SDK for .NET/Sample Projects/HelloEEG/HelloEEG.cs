@@ -18,12 +18,14 @@ namespace testprogram {
         static SerialPort _serialPort;
 
 
-        public static void Main(string[] args) {
+        public static void Main(string[] args) 
+        {
             string name;
             string message;
             StringComparer stringComparer = StringComparer.OrdinalIgnoreCase;
             Thread readThread = new Thread(Read);
             // Create a new SerialPort object with default settings.
+            
             Console.Write("Connecting...");
             _serialPort = new SerialPort("COM5");
             try
@@ -32,17 +34,20 @@ namespace testprogram {
             }
             catch(IOException e)
             {
-                Console.Write("COM5 failed to open");
+                Console.Write("COM5 failed to open\n");
                 Console.Write(e.Message);
+            }
+            finally
+            {
+                Console.Write("Success!");
+                Console.Write("\nType QUIT to exit");
             }
                 
             _continue = true;
-            readThread.Start();
+            //readThread.Start();
 
             Console.Write("\nName: ");
             name = Console.ReadLine();
-
-            Console.WriteLine("Type QUIT to exit");
 
             while (_continue)
             {
@@ -52,15 +57,19 @@ namespace testprogram {
                 {
                     _continue = false;
                 }
+                else if (stringComparer.Equals("e", message))
+                {
+                    _continue = false;
+                }
                 else
                 {
                     _serialPort.WriteLine(message);
                         //String.Format("<{0}>: {1}", name, message));
                 }
+                Read();
             }
-            Thread.Sleep(1);
+            //Thread.Sleep(1);
             //readThread.Abort();   
-            readThread.Join();
             _serialPort.Close();
    
             Console.WriteLine("HelloEEG!");
