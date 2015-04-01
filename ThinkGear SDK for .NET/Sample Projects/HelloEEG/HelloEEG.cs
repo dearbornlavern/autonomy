@@ -147,59 +147,71 @@ namespace testprogram {
 
             TGParser tgParser = new TGParser();
             tgParser.Read(de.DataRowArray);
-
-            
-
-            /* Loops through the newly parsed data of the connected headset*/
-			// The comments below indicate and can be used to print out the different data outputs. 
-
-            for (int i = 0; i < tgParser.ParsedData.Length; i++){
-
-                if (tgParser.ParsedData[i].ContainsKey("Raw")){
-
-                    //Console.WriteLine("Raw Value:" + tgParser.ParsedData[i]["Raw"]);
-
-                }
-
-                if (tgParser.ParsedData[i].ContainsKey("PoorSignal")){
-
-                    //The following line prints the Time associated with the parsed data
-                    //Console.WriteLine("Time:" + tgParser.ParsedData[i]["Time"]);
-                    
-                    //A Poor Signal value of 0 indicates that your headset is fitting properly
-                    Console.WriteLine("Poor Signal:" + tgParser.ParsedData[i]["PoorSignal"]);
-
-                    poorSig = (byte)tgParser.ParsedData[i]["PoorSignal"];
-                }
+            string fileName = "C:\\Users\\Sean\\Documents\\GitHub\\autonomy\\out.txt";
+            using (StreamWriter writer = new StreamWriter(fileName))
+            {
+                //string line;
+                //int size = tgParser.ParsedData.Length;
+                //for (int i = 0; i < size; i++)
+                //{
+                //    string me = tgParser.ParsedData[i] + "\r\n";
+                //    writer.Write(me);
+                //}
 
 
-                if (tgParser.ParsedData[i].ContainsKey("Attention")) {
 
-                    Console.WriteLine("Att Value:" + tgParser.ParsedData[i]["Attention"]);
+                /* Loops through the newly parsed data of the connected headset*/
+                // The comments below indicate and can be used to print out the different data outputs. 
 
-                }
-
-
-                if (tgParser.ParsedData[i].ContainsKey("Meditation")) {
-
-                    Console.WriteLine("Med Value:" + tgParser.ParsedData[i]["Meditation"]);
-
-                }
-
-
-                if(tgParser.ParsedData[i].ContainsKey("EegPowerDelta")) {
-
-                    Console.WriteLine("Delta: " + tgParser.ParsedData[i]["EegPowerDelta"]);
-
-                }
-
-                if (tgParser.ParsedData[i].ContainsKey("BlinkStrength"))
+                for (int i = 0; i < tgParser.ParsedData.Length; i++)
                 {
 
-                    Console.WriteLine("Eyeblink " + tgParser.ParsedData[i]["BlinkStrength"]);
+                    if (tgParser.ParsedData[i].containskey("raw"))
+                    {
+                        //console.writeline("raw value:" + tgParser.parseddata[i]["raw"]);
+                        writer.Write("raw value:" + tgParser.ParsedData[i]["raw"]);
+                    }
 
+                    if (tgParser.ParsedData[i].containskey("poorsignal"))
+                    {
+
+                        //the following line prints the time associated with the parsed data
+                        //console.writeline("time:" + tgParser.parseddata[i]["time"]);
+
+                        //a poor signal value of 0 indicates that your headset is fitting properly
+                        //console.writeline("poor signal:" + tgParser.parseddata[i]["poorsignal"]);
+                        writer.Write("poor signal:" + tgParser.ParsedData[i]["poorsignal"]);
+                        poorsig = (byte)tgParser.ParsedData[i]["poorsignal"];
+                    }
+
+
+                    if (tgParser.ParsedData[i].containskey("attention"))
+                    {
+                        //console.writeline("att value:" + tgParser.parseddata[i]["attention"]);
+                        writer.Write("att value:" + tgParser.ParsedData[i]["attention"]);
+                    }
+
+
+                    if (tgParser.ParsedData[i].containskey("meditation"))
+                    {
+                        //console.writeline("med value:" + tgParser.parseddata[i]["meditation"]);
+                        writer.Write("med value:" + tgParser.ParsedData[i]["meditation"]);
+                    }
+
+
+                    if (tgParser.ParsedData[i].containskey("eegpowerdelta"))
+                    {
+                        //console.writeline("delta: " + tgParser.parseddata[i]["eegpowerdelta"]);
+                        writer.Write("delta: " + tgParser.ParsedData[i]["eegpowerdelta"]);
+                    }
+
+                    if (tgParser.ParsedData[i].containskey("blinkstrength"))
+                    {
+                        //console.writeline("eyeblink " + tgParser.parseddata[i]["blinkstrength"]);
+                        writer.Write("eyeblink " + tgParser.ParsedData[i]["blinkstrength"]);
+                    }
+                    //console.write("\r\n");
                 }
-                //Console.Write("\r\n");
             }
 
         }
