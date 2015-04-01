@@ -11,13 +11,17 @@ using NeuroSky.ThinkGear.Algorithms;
 
 
 namespace testprogram {
-    //this is a comment
     class Program {
         static Connector connector;
-        static byte poorSig;        
+        static byte poorSig;   
 
         public static void Main(string[] args) {
+            string name;
+            string message;
+            StringComparer stringComparer = StringCompareer.OrdinalIgnoreCase;
+            Thread readThread = new Thread(Read);
 
+            // Create a new serial port object
             Console.WriteLine("HelloEEG!");
 
             // Initialize a new Connector and add event handlers
