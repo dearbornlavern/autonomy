@@ -13,7 +13,7 @@ using NeuroSky.ThinkGear.Algorithms;
 namespace testprogram {
     class Program {
         static Connector connector;
-        static byte poorSig;
+        static byte poorSig;        
 
         public static void Main(string[] args) {
 
@@ -34,9 +34,6 @@ namespace testprogram {
             // Blink detection needs to be manually turned on
             connector.setBlinkDetectionEnabled(true);
             Thread.Sleep(450000);
-
-
-
 
             System.Console.WriteLine("Goodbye.");
             connector.Close();
