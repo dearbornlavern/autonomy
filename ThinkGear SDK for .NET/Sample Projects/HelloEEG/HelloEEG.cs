@@ -24,12 +24,22 @@ namespace testprogram {
             StringComparer stringComparer = StringComparer.OrdinalIgnoreCase;
             Thread readThread = new Thread(Read);
             // Create a new SerialPort object with default settings.
+            Console.Write("Connecting...");
             _serialPort = new SerialPort("COM5");
-            _serialPort.Open();
+            try
+            { 
+                _serialPort.Open(); 
+            }
+            catch(IOException e)
+            {
+                Console.Write("COM5 failed to open");
+                Console.Write(e.Message);
+            }
+                
             _continue = true;
             readThread.Start();
 
-            Console.Write("Name: ");
+            Console.Write("\nName: ");
             name = Console.ReadLine();
 
             Console.WriteLine("Type QUIT to exit");
@@ -44,14 +54,16 @@ namespace testprogram {
                 }
                 else
                 {
-                    _serialPort.WriteLine(
-                        String.Format("<{0}>: {1}", name, message));
+                    _serialPort.WriteLine(message);
+                        //String.Format("<{0}>: {1}", name, message));
                 }
-            }               
+            }
+            Thread.Sleep(1);
+            //readThread.Abort();   
             readThread.Join();
             _serialPort.Close();
    
-                Console.WriteLine("HelloEEG!");
+            Console.WriteLine("HelloEEG!");
 
             // Initialize a new Connector and add event handlers
 

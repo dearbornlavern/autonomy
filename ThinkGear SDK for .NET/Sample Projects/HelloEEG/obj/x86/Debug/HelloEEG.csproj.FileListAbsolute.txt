@@ -19,11 +19,11 @@ C:\Users\Sean\Documents\mdt-r2_5_4\ThinkGear SDK for .NET\Sample Projects\HelloE
 C:\Users\Sean\Documents\mdt-r2_5_4\ThinkGear SDK for .NET\Sample Projects\HelloEEG\bin\Debug\NLog.xml
 C:\Users\Sean\Documents\mdt-r2_5_4\ThinkGear SDK for .NET\Sample Projects\HelloEEG\obj\x86\Debug\HelloEEG.csprojResolveAssemblyReference.cache
 C:\Users\Sean\Documents\GitHub\autonomy\ThinkGear SDK for .NET\Sample Projects\HelloEEG\bin\Debug\ConsoleApplication.exe.config
-C:\Users\Sean\Documents\GitHub\autonomy\ThinkGear SDK for .NET\Sample Projects\HelloEEG\obj\x86\Debug\ConsoleApplication.exe
-C:\Users\Sean\Documents\GitHub\autonomy\ThinkGear SDK for .NET\Sample Projects\HelloEEG\obj\x86\Debug\ConsoleApplication.pdb
 C:\Users\Sean\Documents\GitHub\autonomy\ThinkGear SDK for .NET\Sample Projects\HelloEEG\bin\Debug\ConsoleApplication.exe
 C:\Users\Sean\Documents\GitHub\autonomy\ThinkGear SDK for .NET\Sample Projects\HelloEEG\bin\Debug\ConsoleApplication.pdb
 C:\Users\Sean\Documents\GitHub\autonomy\ThinkGear SDK for .NET\Sample Projects\HelloEEG\bin\Debug\ThinkGear.dll
 C:\Users\Sean\Documents\GitHub\autonomy\ThinkGear SDK for .NET\Sample Projects\HelloEEG\bin\Debug\Jayrock.Json.dll
 C:\Users\Sean\Documents\GitHub\autonomy\ThinkGear SDK for .NET\Sample Projects\HelloEEG\bin\Debug\NLog.dll
 C:\Users\Sean\Documents\GitHub\autonomy\ThinkGear SDK for .NET\Sample Projects\HelloEEG\bin\Debug\NLog.xml
+C:\Users\Sean\Documents\GitHub\autonomy\ThinkGear SDK for .NET\Sample Projects\HelloEEG\obj\x86\Debug\ConsoleApplication.exe
+C:\Users\Sean\Documents\GitHub\autonomy\ThinkGear SDK for .NET\Sample Projects\HelloEEG\obj\x86\Debug\ConsoleApplication.pdb
