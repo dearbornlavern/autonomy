@@ -20,7 +20,6 @@ namespace testprogram {
 
         public static void Main(string[] args) 
         {
-            string name;
             string message;
             StringComparer stringComparer = StringComparer.OrdinalIgnoreCase;
             Thread readThread = new Thread(Read);
@@ -45,9 +44,18 @@ namespace testprogram {
                     Console.Write("\nType QUIT to exit");
                 }               
             }
-                
+            // Initialize a new Connector and add event handlers
+
+            connector = new Connector();
+            connector.DeviceConnected += new EventHandler(OnDeviceConnected);
+            connector.DeviceConnectFail += new EventHandler(OnDeviceFail);
+            connector.DeviceValidating += new EventHandler(OnDeviceValidating);
+
+            // Scan for devices across COM ports
+            // The COM port named will be the first COM port that is checked.
+            //connector.ConnectScan("COM40");
+            connector.ConnectScan("COM6");
             _continue = true;
-            //readThread.Start();
 
             while (_continue)
             {
@@ -63,8 +71,6 @@ namespace testprogram {
                 }
                 Read();
             }
-            //Thread.Sleep(1);
-            //readThread.Abort();
             try
             {
                 _serialPort.Close();
@@ -169,32 +175,31 @@ namespace testprogram {
 
                 if (tgParser.ParsedData[i].ContainsKey("Attention")) {
 
-                    //Console.WriteLine("Att Value:" + tgParser.ParsedData[i]["Attention"]);
+                    Console.WriteLine("Att Value:" + tgParser.ParsedData[i]["Attention"]);
 
                 }
 
 
                 if (tgParser.ParsedData[i].ContainsKey("Meditation")) {
 
-                    //Console.WriteLine("Med Value:" + tgParser.ParsedData[i]["Meditation"]);
+                    Console.WriteLine("Med Value:" + tgParser.ParsedData[i]["Meditation"]);
 
                 }
 
 
                 if(tgParser.ParsedData[i].ContainsKey("EegPowerDelta")) {
 
-                    //Console.WriteLine("Delta: " + tgParser.ParsedData[i]["EegPowerDelta"]);
+                    Console.WriteLine("Delta: " + tgParser.ParsedData[i]["EegPowerDelta"]);
 
                 }
 
                 if (tgParser.ParsedData[i].ContainsKey("BlinkStrength"))
                 {
 
-                    //Console.WriteLine("Eyeblink " + tgParser.ParsedData[i]["BlinkStrength"]);
+                    Console.WriteLine("Eyeblink " + tgParser.ParsedData[i]["BlinkStrength"]);
 
                 }
-
-
+                //Console.Write("\r\n");
             }
 
         }
