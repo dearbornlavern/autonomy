@@ -39,15 +39,15 @@ namespace testprogram {
             }
             finally
             {
-                Console.Write("Success!");
-                Console.Write("\nType QUIT to exit");
+                if (_serialPort.IsOpen)
+                {
+                    Console.Write("Success!");
+                    Console.Write("\nType QUIT to exit");
+                }               
             }
                 
             _continue = true;
             //readThread.Start();
-
-            Console.Write("\nName: ");
-            name = Console.ReadLine();
 
             while (_continue)
             {
@@ -57,20 +57,22 @@ namespace testprogram {
                 {
                     _continue = false;
                 }
-                else if (stringComparer.Equals("e", message))
-                {
-                    _continue = false;
-                }
                 else
                 {
                     _serialPort.WriteLine(message);
-                        //String.Format("<{0}>: {1}", name, message));
                 }
                 Read();
             }
             //Thread.Sleep(1);
-            //readThread.Abort();   
-            _serialPort.Close();
+            //readThread.Abort();
+            try
+            {
+                _serialPort.Close();
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine("COM5 did not close successfully.");
+            }
    
             Console.WriteLine("HelloEEG!");
 
