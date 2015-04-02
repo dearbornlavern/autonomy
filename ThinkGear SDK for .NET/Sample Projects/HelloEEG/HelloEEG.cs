@@ -207,7 +207,7 @@ namespace testprogram {
 
                     if (tgParser.ParsedData[i].ContainsKey("blinkstrength"))
                     {
-                        //console.writeline("eyeblink " + tgParser.parseddata[i]["blinkstrength"]);
+                        Console.writeline("eyeblink " + tgParser.parseddata[i]["blinkstrength"]);
                         writer.Write("eyeblink " + tgParser.ParsedData[i]["blinkstrength"]);
                     }
                     //console.write("\r\n");
