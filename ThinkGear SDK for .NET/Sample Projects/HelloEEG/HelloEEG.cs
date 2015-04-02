@@ -26,7 +26,7 @@ namespace testprogram {
             Thread readThread = new Thread(Read);
             // Create a new SerialPort object with default settings.
 
-            Console.WriteLine("HelloEEG!");
+            Console.WriteLine("*** HelloEEG ***!");
             
             _serialPort = new SerialPort("COM5");
             try
@@ -106,7 +106,7 @@ namespace testprogram {
 
             Connector.DeviceEventArgs de = (Connector.DeviceEventArgs)e;
 
-            Console.WriteLine("Device found on: " + de.Device.PortName);
+            Console.WriteLine("Mindwave Mobile...connected on " + de.Device.PortName);
             de.Device.DataReceived += new EventHandler(OnDataReceived);
 
         }
@@ -116,10 +116,9 @@ namespace testprogram {
 
         // Called when scanning fails
 
-        static void OnDeviceFail(object sender, EventArgs e) {
-
+        static void OnDeviceFail(object sender, EventArgs e) 
+        {
             Console.WriteLine("No devices found! :(");
-
         }
 
 
@@ -128,7 +127,7 @@ namespace testprogram {
 
         static void OnDeviceValidating(object sender, EventArgs e) {
 
-            Console.WriteLine("Validating: ");
+            Console.WriteLine("Validating...");
 
         }
 
