@@ -180,7 +180,7 @@ namespace testprogram {
                     try
                     {
                        // Console.WriteLine("Att Value:" + tgParser.ParsedData[i]["Attention"]);
-                        _serialPort.WriteLine(tgParser.ParsedData[i]["Attention"] + ",");
+                        _serialPort.Write(tgParser.ParsedData[i]["Attention"] + ",");
                         Console.WriteLine(tgParser.ParsedData[i]["Attention"] + ",");
                     }
                     catch (System.InvalidOperationException ex)
@@ -195,8 +195,8 @@ namespace testprogram {
                     try
                     {
                         // Console.WriteLine("Att Value:" + tgParser.ParsedData[i]["Attention"]);
-                        _serialPort.WriteLine(tgParser.ParsedData[i]["Meditation"] + ",");
-                        Console.WriteLine(tgParser.ParsedData[i]["Meditation"] + ",");
+                        _serialPort.Write(tgParser.ParsedData[i]["Meditation"] + ",");
+                        Console.Write(tgParser.ParsedData[i]["Meditation"] + ",");
                     }
                     catch (System.InvalidOperationException ex)
                     {
@@ -210,7 +210,7 @@ namespace testprogram {
                     try
                     {
                         // Console.WriteLine("Att Value:" + tgParser.ParsedData[i]["Attention"]);
-                        _serialPort.WriteLine(tgParser.ParsedData[i]["EegPowerDelta"] + ",");
+                        _serialPort.Write(tgParser.ParsedData[i]["EegPowerDelta"] + ",");
                         Console.WriteLine(tgParser.ParsedData[i]["EegPowerDelta"] + ",");
                     }
                     catch (System.InvalidOperationException ex)
