@@ -162,12 +162,12 @@ namespace testprogram {
                     //Console.WriteLine("Time:" + tgParser.ParsedData[i]["Time"]);
                     
                     //A Poor Signal value of 0 indicates that your headset is fitting properly
-                    //Console.WriteLine("Poor Signal:" + tgParser.ParsedData[i]["PoorSignal"]);
 
                     poorSig = (byte)tgParser.ParsedData[i]["PoorSignal"];
                     try
                     {
-                        _serialPort.Write("pc:" + tgParser.ParsedData[i]["PoorSignal"] + ",");
+                        _serialPort.Write(tgParser.ParsedData[i]["PoorSignal"] + ",");
+                        Console.WriteLine("Poor Signal:" + tgParser.ParsedData[i]["PoorSignal"]);
                     }
                     catch (System.InvalidOperationException ex)
                     {
@@ -183,7 +183,7 @@ namespace testprogram {
                     try
                     {
                        // Console.WriteLine("Att Value:" + tgParser.ParsedData[i]["Attention"]);
-                        _serialPort.WriteLine("Att:" + tgParser.ParsedData[i]["Attention"] + ",");
+                        _serialPort.WriteLine(tgParser.ParsedData[i]["Attention"] + ",");
                     }
                     catch (System.InvalidOperationException ex)
                     {
