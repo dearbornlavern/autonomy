@@ -28,6 +28,7 @@ namespace testprogram {
             // Create a new SerialPort object with default settings.
 
             Console.WriteLine("*** HelloEEG ***!");
+            Console.WriteLine("Type \'quit\' to exit.");
             
             _serialPort = new SerialPort("COM5");
             try
@@ -49,23 +50,7 @@ namespace testprogram {
                 }               
             }
                 
-            _continue = true;
-            //readThread.Start();
-
-            while (_continue)
-            {
-                message = Console.ReadLine();
-
-                if (stringComparer.Equals("quit", message))
-                {
-                    _continue = false;
-                }
-                else
-                {
-                    _serialPort.WriteLine(message);
-                }
-                //Read();
-            }
+            
             //Thread.Sleep(1);
             //readThread.Abort();
             //try
@@ -91,9 +76,29 @@ namespace testprogram {
             //connector.ConnectScan("COM40");
             connector.ConnectScan("COM6");
 
+            _continue = true;
+            //Console.WriteLine("Type \'quit\' to exit.");
+            //readThread.Start();
+
+            while (_continue)
+            {
+                message = Console.ReadLine();
+
+                if (stringComparer.Equals("quit", message))
+                {
+                    _continue = false;
+                    _serialPort.Close();
+                }
+                else
+                {
+                    _serialPort.WriteLine(message);
+                }
+                //Read();
+            }
+
             // Blink detection needs to be manually turned on
-            connector.setBlinkDetectionEnabled(true);
-            Thread.Sleep(450000);
+            //connector.setBlinkDetectionEnabled(true);
+            //Thread.Sleep(450000);
 
             System.Console.WriteLine("Goodbye.");
             connector.Close();
