@@ -25,11 +25,13 @@ namespace testprogram {
             StringComparer stringComparer = StringComparer.OrdinalIgnoreCase;
             Thread readThread = new Thread(Read);
             // Create a new SerialPort object with default settings.
+
+            Console.WriteLine("HelloEEG!");
             
-            Console.Write("Connecting to Arduino...");
             _serialPort = new SerialPort("COM5");
             try
-            { 
+            {
+                Console.Write("Connecting to Arduino...");
                 _serialPort.Open(); 
             }
             catch(IOException e)
@@ -41,7 +43,7 @@ namespace testprogram {
             {
                 if (_serialPort.IsOpen)
                 {
-                    Console.Write("Success!");
+                    Console.Write("Success!\n");
                     //Console.Write("\nType QUIT to exit");
                 }               
             }
@@ -65,16 +67,16 @@ namespace testprogram {
             //}
             //Thread.Sleep(1);
             //readThread.Abort();
-            try
-            {
-                _serialPort.Close();
-            }
-            catch (IOException e)
-            {
-                Console.WriteLine("COM5 did not close successfully.");
-            }
+            //try
+            //{
+            //    _serialPort.Close();
+            //}
+            //catch (IOException e)
+            //{
+            //    Console.WriteLine("COM5 did not close successfully.");
+            //}
    
-            Console.WriteLine("HelloEEG!");
+            
 
             // Initialize a new Connector and add event handlers
 
@@ -170,7 +172,7 @@ namespace testprogram {
                     }
                     catch (System.InvalidOperationException ex)
                     {
-                        Console.Write(ex.Message);
+                        Console.WriteLine(ex.Message);
                     }
                     
 
@@ -179,8 +181,16 @@ namespace testprogram {
 
                 if (tgParser.ParsedData[i].ContainsKey("Attention")) {
 
-                    Console.WriteLine("Att Value:" + tgParser.ParsedData[i]["Attention"]);
-                    _serialPort.WriteLine("Att:" + tgParser.ParsedData[i]["Attention"]);
+                    //Console.WriteLine("Att Value:" + tgParser.ParsedData[i]["Attention"]);
+                    //_serialPort.WriteLine("Att:" + tgParser.ParsedData[i]["Attention"]);
+                    try
+                    {
+                        _serialPort.WriteLine("Att:" + tgParser.ParsedData[i]["Attention"]);
+                    }
+                    catch (System.InvalidOperationException ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
 
                 }
 
