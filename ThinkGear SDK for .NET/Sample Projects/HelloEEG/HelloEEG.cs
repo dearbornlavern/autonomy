@@ -158,16 +158,15 @@ namespace testprogram {
 
                 if (tgParser.ParsedData[i].ContainsKey("PoorSignal")){
 
-                    //The following line prints the Time associated with the parsed data
-                    //Console.WriteLine("Time:" + tgParser.ParsedData[i]["Time"]);
-                    
+                    //The following line prints the Time associated with the parsed data                  
                     //A Poor Signal value of 0 indicates that your headset is fitting properly
 
                     poorSig = (byte)tgParser.ParsedData[i]["PoorSignal"];
                     try
                     {
                         _serialPort.Write(tgParser.ParsedData[i]["PoorSignal"] + ",");
-                        Console.WriteLine("Poor Signal:" + tgParser.ParsedData[i]["PoorSignal"]);
+                        //Console.WriteLine("Poor Signal:" + tgParser.ParsedData[i]["PoorSignal"]);
+                        Console.Write(tgParser.ParsedData[i]["PoorSignal"] + ",");
                     }
                     catch (System.InvalidOperationException ex)
                     {
@@ -178,12 +177,11 @@ namespace testprogram {
 
                 if (tgParser.ParsedData[i].ContainsKey("Attention")) 
                 {
-                    //Console.WriteLine("Att Value:" + tgParser.ParsedData[i]["Attention"]);
-                    //_serialPort.WriteLine("Att:" + tgParser.ParsedData[i]["Attention"]);
                     try
                     {
                        // Console.WriteLine("Att Value:" + tgParser.ParsedData[i]["Attention"]);
                         _serialPort.WriteLine(tgParser.ParsedData[i]["Attention"] + ",");
+                        Console.WriteLine(tgParser.ParsedData[i]["Attention"] + ",");
                     }
                     catch (System.InvalidOperationException ex)
                     {
