@@ -20,6 +20,7 @@ namespace testprogram {
 
         public static void Main(string[] args) 
         {
+            string name;
             string message;
             StringComparer stringComparer = StringComparer.OrdinalIgnoreCase;
             Thread readThread = new Thread(Read);
@@ -44,18 +45,9 @@ namespace testprogram {
                     Console.Write("\nType QUIT to exit");
                 }               
             }
-            // Initialize a new Connector and add event handlers
-
-            connector = new Connector();
-            connector.DeviceConnected += new EventHandler(OnDeviceConnected);
-            connector.DeviceConnectFail += new EventHandler(OnDeviceFail);
-            connector.DeviceValidating += new EventHandler(OnDeviceValidating);
-
-            // Scan for devices across COM ports
-            // The COM port named will be the first COM port that is checked.
-            //connector.ConnectScan("COM40");
-            connector.ConnectScan("COM6");
+                
             _continue = true;
+            //readThread.Start();
 
             while (_continue)
             {
@@ -71,6 +63,8 @@ namespace testprogram {
                 }
                 Read();
             }
+            //Thread.Sleep(1);
+            //readThread.Abort();
             try
             {
                 _serialPort.Close();
@@ -147,71 +141,63 @@ namespace testprogram {
 
             TGParser tgParser = new TGParser();
             tgParser.Read(de.DataRowArray);
-            string fileName = "C:\\Users\\Sean\\Documents\\GitHub\\autonomy\\out.txt";
-            using (StreamWriter writer = new StreamWriter(fileName))
-            {
-                //string line;
-                //int size = tgParser.ParsedData.Length;
-                //for (int i = 0; i < size; i++)
-                //{
-                //    string me = tgParser.ParsedData[i] + "\r\n";
-                //    writer.Write(me);
-                //}
+
+            
+
+            /* Loops through the newly parsed data of the connected headset*/
+			// The comments below indicate and can be used to print out the different data outputs. 
+
+            for (int i = 0; i < tgParser.ParsedData.Length; i++){
+
+                if (tgParser.ParsedData[i].ContainsKey("Raw")){
+
+                    //Console.WriteLine("Raw Value:" + tgParser.ParsedData[i]["Raw"]);
+
+                }
+
+                if (tgParser.ParsedData[i].ContainsKey("PoorSignal")){
+
+                    //The following line prints the Time associated with the parsed data
+                    //Console.WriteLine("Time:" + tgParser.ParsedData[i]["Time"]);
+                    
+                    //A Poor Signal value of 0 indicates that your headset is fitting properly
+                    Console.WriteLine("Poor Signal:" + tgParser.ParsedData[i]["PoorSignal"]);
+
+                    poorSig = (byte)tgParser.ParsedData[i]["PoorSignal"];
+                    _serialPort.WriteLine("pc:" + tgParser.ParsedData[i]["PoorSignal"]);
+
+                }
 
 
+                if (tgParser.ParsedData[i].ContainsKey("Attention")) {
 
-                /* Loops through the newly parsed data of the connected headset*/
-                // The comments below indicate and can be used to print out the different data outputs. 
+                    Console.WriteLine("Att Value:" + tgParser.ParsedData[i]["Attention"]);
+                    _serialPort.WriteLine("Att:" + tgParser.ParsedData[i]["Attention"]);
 
-                for (int i = 0; i < tgParser.ParsedData.Length; i++)
+                }
+
+
+                if (tgParser.ParsedData[i].ContainsKey("Meditation")) {
+
+                    //Console.WriteLine("Med Value:" + tgParser.ParsedData[i]["Meditation"]);
+
+                }
+
+
+                if(tgParser.ParsedData[i].ContainsKey("EegPowerDelta")) {
+
+                    //Console.WriteLine("Delta: " + tgParser.ParsedData[i]["EegPowerDelta"]);
+
+                }
+
+                if (tgParser.ParsedData[i].ContainsKey("BlinkStrength"))
                 {
 
-                    if (tgParser.ParsedData[i].ContainsKey("raw"))
-                    {
-                        //console.writeline("raw value:" + tgParser.parseddata[i]["raw"]);
-                        writer.Write("raw value:" + tgParser.ParsedData[i]["raw"]);
-                    }
+                    //Console.WriteLine("Eyeblink " + tgParser.ParsedData[i]["BlinkStrength"]);
 
-                    if (tgParser.ParsedData[i].ContainsKey("poorsignal"))
-                    {
-
-                        //the following line prints the time associated with the parsed data
-                        //console.writeline("time:" + tgParser.parseddata[i]["time"]);
-
-                        //a poor signal value of 0 indicates that your headset is fitting properly
-                        //console.writeline("poor signal:" + tgParser.parseddata[i]["poorsignal"]);
-                        byte poorsig = (byte)tgParser.ParsedData[i]["poorsignal"];
-                        writer.Write("poor signal:" + tgParser.ParsedData[i]["poorsignal"]);                    
-                    }
-
-
-                    if (tgParser.ParsedData[i].ContainsKey("attention"))
-                    {
-                        //console.writeline("att value:" + tgParser.parseddata[i]["attention"]);
-                        writer.Write("att value:" + tgParser.ParsedData[i]["attention"]);
-                    }
-
-
-                    if (tgParser.ParsedData[i].ContainsKey("meditation"))
-                    {
-                        //console.writeline("med value:" + tgParser.parseddata[i]["meditation"]);
-                        writer.Write("med value:" + tgParser.ParsedData[i]["meditation"]);
-                    }
-
-
-                    if (tgParser.ParsedData[i].ContainsKey("eegpowerdelta"))
-                    {
-                        //console.writeline("delta: " + tgParser.parseddata[i]["eegpowerdelta"]);
-                        writer.Write("delta: " + tgParser.ParsedData[i]["eegpowerdelta"]);
-                    }
-
-                    if (tgParser.ParsedData[i].ContainsKey("blinkstrength"))
-                    {
-                        Console.writeline("eyeblink " + tgParser.parseddata[i]["blinkstrength"]);
-                        writer.Write("eyeblink " + tgParser.ParsedData[i]["blinkstrength"]);
-                    }
-                    //console.write("\r\n");
                 }
+
+
             }
 
         }
