@@ -187,14 +187,21 @@ namespace testprogram {
                     {
                         Console.WriteLine(ex.Message);
                     }
-
                 }
 
 
-                if (tgParser.ParsedData[i].ContainsKey("Meditation")) {
-
-                    //Console.WriteLine("Med Value:" + tgParser.ParsedData[i]["Meditation"]);
-
+                if (tgParser.ParsedData[i].ContainsKey("Meditation")) 
+                {
+                    try
+                    {
+                        // Console.WriteLine("Att Value:" + tgParser.ParsedData[i]["Attention"]);
+                        _serialPort.WriteLine(tgParser.ParsedData[i]["Meditation"] + ",");
+                        Console.WriteLine(tgParser.ParsedData[i]["Meditation"] + ",");
+                    }
+                    catch (System.InvalidOperationException ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
                 }
 
 
