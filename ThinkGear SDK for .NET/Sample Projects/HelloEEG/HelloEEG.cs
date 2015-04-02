@@ -205,10 +205,18 @@ namespace testprogram {
                 }
 
 
-                if(tgParser.ParsedData[i].ContainsKey("EegPowerDelta")) {
-
-                    //Console.WriteLine("Delta: " + tgParser.ParsedData[i]["EegPowerDelta"]);
-
+                if(tgParser.ParsedData[i].ContainsKey("EegPowerDelta")) 
+                {
+                    try
+                    {
+                        // Console.WriteLine("Att Value:" + tgParser.ParsedData[i]["Attention"]);
+                        _serialPort.WriteLine(tgParser.ParsedData[i]["EegPowerDelta"] + ",");
+                        Console.WriteLine(tgParser.ParsedData[i]["EegPowerDelta"] + ",");
+                    }
+                    catch (System.InvalidOperationException ex)
+                    {
+                        Console.WriteLine(ex.Message);
+                    }
                 }
 
                 if (tgParser.ParsedData[i].ContainsKey("BlinkStrength"))
