@@ -26,7 +26,7 @@ namespace testprogram {
             Thread readThread = new Thread(Read);
             // Create a new SerialPort object with default settings.
             
-            Console.Write("Connecting...");
+            Console.Write("Connecting to Arduino...");
             _serialPort = new SerialPort("COM5");
             try
             { 
@@ -42,27 +42,27 @@ namespace testprogram {
                 if (_serialPort.IsOpen)
                 {
                     Console.Write("Success!");
-                    Console.Write("\nType QUIT to exit");
+                    //Console.Write("\nType QUIT to exit");
                 }               
             }
                 
-            _continue = true;
+            //_continue = true;
             //readThread.Start();
 
-            while (_continue)
-            {
-                message = Console.ReadLine();
+            //while (_continue)
+            //{
+            //    message = Console.ReadLine();
 
-                if (stringComparer.Equals("quit", message))
-                {
-                    _continue = false;
-                }
-                else
-                {
-                    _serialPort.WriteLine(message);
-                }
-                Read();
-            }
+            //    if (stringComparer.Equals("quit", message))
+            //    {
+            //        _continue = false;
+            //    }
+            //    else
+            //    {
+            //        _serialPort.WriteLine(message);
+            //    }
+            //    //Read();
+            //}
             //Thread.Sleep(1);
             //readThread.Abort();
             try
@@ -147,8 +147,8 @@ namespace testprogram {
             /* Loops through the newly parsed data of the connected headset*/
 			// The comments below indicate and can be used to print out the different data outputs. 
 
-            for (int i = 0; i < tgParser.ParsedData.Length; i++){
-
+            for (int i = 0; i < tgParser.ParsedData.Length; i++)
+            {
                 if (tgParser.ParsedData[i].ContainsKey("Raw")){
 
                     //Console.WriteLine("Raw Value:" + tgParser.ParsedData[i]["Raw"]);
@@ -164,7 +164,15 @@ namespace testprogram {
                     Console.WriteLine("Poor Signal:" + tgParser.ParsedData[i]["PoorSignal"]);
 
                     poorSig = (byte)tgParser.ParsedData[i]["PoorSignal"];
-                    _serialPort.WriteLine("pc:" + tgParser.ParsedData[i]["PoorSignal"]);
+                    try
+                    {
+                        _serialPort.Write("pc:" + tgParser.ParsedData[i]["PoorSignal"]);
+                    }
+                    catch (System.InvalidOperationException ex)
+                    {
+                        Console.Write(ex.Message);
+                    }
+                    
 
                 }
 
