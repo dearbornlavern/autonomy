@@ -23,7 +23,8 @@ namespace testprogram {
             string name;
             string message;
             StringComparer stringComparer = StringComparer.OrdinalIgnoreCase;
-            Thread readThread = new Thread(Read);
+            //Thread readThread = new Thread(Read);
+            bool _continue;
             // Create a new SerialPort object with default settings.
 
             Console.WriteLine("*** HelloEEG ***!");
@@ -48,23 +49,23 @@ namespace testprogram {
                 }               
             }
                 
-            //_continue = true;
+            _continue = true;
             //readThread.Start();
 
-            //while (_continue)
-            //{
-            //    message = Console.ReadLine();
+            while (_continue)
+            {
+                message = Console.ReadLine();
 
-            //    if (stringComparer.Equals("quit", message))
-            //    {
-            //        _continue = false;
-            //    }
-            //    else
-            //    {
-            //        _serialPort.WriteLine(message);
-            //    }
-            //    //Read();
-            //}
+                if (stringComparer.Equals("quit", message))
+                {
+                    _continue = false;
+                }
+                else
+                {
+                    _serialPort.WriteLine(message);
+                }
+                //Read();
+            }
             //Thread.Sleep(1);
             //readThread.Abort();
             //try
