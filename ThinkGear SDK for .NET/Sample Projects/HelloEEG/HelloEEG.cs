@@ -164,9 +164,9 @@ namespace testprogram {
                     poorSig = (byte)tgParser.ParsedData[i]["PoorSignal"];
                     try
                     {
-                        _serialPort.Write(tgParser.ParsedData[i]["PoorSignal"] + "%");
+                        _serialPort.Write("%" + tgParser.ParsedData[i]["PoorSignal"]);
                         //Console.WriteLine("Poor Signal:" + tgParser.ParsedData[i]["PoorSignal"]);
-                        Console.Write(tgParser.ParsedData[i]["PoorSignal"] + "%");
+                        //Console.Write(tgParser.ParsedData[i]["PoorSignal"] + "%");
                     }
                     catch (System.InvalidOperationException ex)
                     {
@@ -180,8 +180,8 @@ namespace testprogram {
                     try
                     {
                        // Console.WriteLine("Att Value:" + tgParser.ParsedData[i]["Attention"]);
-                        _serialPort.Write(tgParser.ParsedData[i]["Attention"] + "^");
-                        Console.Write(tgParser.ParsedData[i]["Attention"] + "^");
+                        _serialPort.Write("^" + tgParser.ParsedData[i]["Attention"]);
+                       // Console.Write("^" + tgParser.ParsedData[i]["Attention"]);
                     }
                     catch (System.InvalidOperationException ex)
                     {
@@ -195,8 +195,8 @@ namespace testprogram {
                     try
                     {
                         // Console.WriteLine("Att Value:" + tgParser.ParsedData[i]["Attention"]);
-                        _serialPort.Write(tgParser.ParsedData[i]["Meditation"] + "&");
-                        Console.Write(tgParser.ParsedData[i]["Meditation"] + "&");
+                        _serialPort.Write("&" + tgParser.ParsedData[i]["Meditation"]);
+                       // Console.Write("&" + tgParser.ParsedData[i]["Meditation"]);
                     }
                     catch (System.InvalidOperationException ex)
                     {
@@ -210,8 +210,8 @@ namespace testprogram {
                     try
                     {
                         // Console.WriteLine("Att Value:" + tgParser.ParsedData[i]["Attention"]);
-                        _serialPort.Write(tgParser.ParsedData[i]["EegPowerDelta"] + "*");
-                        Console.WriteLine(tgParser.ParsedData[i]["EegPowerDelta"] + "*");
+                        _serialPort.Write("$" + tgParser.ParsedData[i]["EegPowerDelta"]);
+                        //Console.WriteLine("$" + tgParser.ParsedData[i]["EegPowerDelta"]*");
                     }
                     catch (System.InvalidOperationException ex)
                     {
@@ -221,9 +221,7 @@ namespace testprogram {
 
                 if (tgParser.ParsedData[i].ContainsKey("BlinkStrength"))
                 {
-
                     //Console.WriteLine("Eyeblink " + tgParser.ParsedData[i]["BlinkStrength"]);
-
                 }
 
 
