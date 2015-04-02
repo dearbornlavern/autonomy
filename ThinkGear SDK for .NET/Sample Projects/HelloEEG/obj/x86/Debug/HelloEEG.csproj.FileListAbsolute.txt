@@ -27,4 +27,10 @@ C:\Users\Sean\Documents\GitHub\autonomy\ThinkGear SDK for .NET\Sample Projects\H
 C:\Users\Sean\Documents\GitHub\autonomy\ThinkGear SDK for .NET\Sample Projects\HelloEEG\bin\Debug\NLog.xml
 C:\Users\Sean\Documents\GitHub\autonomy\ThinkGear SDK for .NET\Sample Projects\HelloEEG\obj\x86\Debug\ConsoleApplication.exe
 C:\Users\Sean\Documents\GitHub\autonomy\ThinkGear SDK for .NET\Sample Projects\HelloEEG\obj\x86\Debug\ConsoleApplication.pdb
+C:\Users\Sean\Documents\GitHub\autonomy\ThinkGear SDK for .NET\Sample Projects\HelloEEG\obj\x86\Debug\HelloEEG.Autonomy_UI.resources
+C:\Users\Sean\Documents\GitHub\autonomy\ThinkGear SDK for .NET\Sample Projects\HelloEEG\obj\x86\Debug\HelloEEG.csproj.GenerateResource.Cache
+C:\Users\Sean\Documents\GitHub\autonomy\ThinkGear SDK for .NET\Sample Projects\HelloEEG\bin\Debug\ConsoleApplication.exe.manifest
+C:\Users\Sean\Documents\GitHub\autonomy\ThinkGear SDK for .NET\Sample Projects\HelloEEG\bin\Debug\ConsoleApplication.application
+C:\Users\Sean\Documents\GitHub\autonomy\ThinkGear SDK for .NET\Sample Projects\HelloEEG\obj\x86\Debug\ConsoleApplication.exe.manifest
+C:\Users\Sean\Documents\GitHub\autonomy\ThinkGear SDK for .NET\Sample Projects\HelloEEG\obj\x86\Debug\ConsoleApplication.application
 C:\Users\Sean\Documents\GitHub\autonomy\ThinkGear SDK for .NET\Sample Projects\HelloEEG\obj\x86\Debug\HelloEEG.csprojResolveAssemblyReference.cache
