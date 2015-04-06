@@ -1,7 +1,7 @@
 There are two files here:
 autonomy is a simple console application that will connect both
 to the Mindwave headset and the BlueSmirf bluetooth antenna that
-is hooked up to the Arduino Uno. It as a C# library, and was built 
+is hooked up to the Arduino Uno. It is a C# program, and was built 
 in Visual Studio. Use other IDEs at you own discretion!
 
 bluetooth_motors_go is the code for the Arduino Uno. It receives
